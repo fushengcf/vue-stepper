@@ -94,7 +94,11 @@ export default {
     reset: {
       type: Boolean,
       default: false
-    }
+    },
+    review: {
+      type: Boolean,
+      default: false
+    }	    
   },
 
   data() {
@@ -150,6 +154,11 @@ export default {
 
         if (!back) {
           this.$emit("completed-step", this.previousStep);
+        }
+      if(this.review) {
+        if(this.steps[index].completed) {
+          this.canContinue = true;
+        }
         }
       }
       this.$emit("active-step", this.currentStep);
